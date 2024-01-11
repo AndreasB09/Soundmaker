@@ -33,7 +33,7 @@ const magicSound = document.getElementById("magic-sound");
 // Create and append buttons for each sound
 sounds.forEach((audioSrc) => {
   const buttonElem = createGuitar(audioSrc);
-  magicSound.append(buttonElem);
+  magicSound.appendChild(buttonElem);
 });
 
 // Function to create a button for a sound
@@ -44,6 +44,7 @@ function createGuitar(audioSrc) {
   const soundElem = document.createElement("audio");
   soundElem.src = `${soundFolder}/${audioSrc.fileName}`;
 
+  audioSrc.buttonElem = buttonElem;
   audioSrc.soundElem = soundElem;
 
   // Use mousedown and mouseup events for better compatibility
@@ -58,3 +59,25 @@ function createGuitar(audioSrc) {
 
   return buttonElem;
 }
+
+// Listen for keyboard events
+window.addEventListener("keydown", (event) => {
+  const keyPressed = event.key.toLowerCase();
+
+  const soundIsFound = sounds.find((sound) => sound.hotKey === keyPressed);
+  if (!soundIsFound) return;
+
+  soundIsFound.buttonElem.classList.add("btn-down");
+  soundIsFound.soundElem.play();
+});
+
+window.addEventListener("keyup", (event) => {
+  const keyPressed = event.key.toLowerCase();
+
+  const soundIsFound = sounds.find((sound) => sound.hotKey === keyPressed);
+  if (!soundIsFound) return;
+
+  soundIsFound.buttonElem.classList.remove("btn-down");
+  soundIsFound.soundElem.pause();
+  soundIsFound.soundElem.currentTime = 0;
+});
