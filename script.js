@@ -30,13 +30,17 @@ const sounds = [
 
 const magicSound = document.getElementById("magic-sound");
 
+const btnContainer = document.createElement("div");
+btnContainer.id = "btn-container";
+magicSound.append(btnContainer);
+
 // Create and append buttons for each sound
 sounds.forEach((audioSrc) => {
   const buttonElem = createGuitar(audioSrc);
-  magicSound.appendChild(buttonElem);
+  btnContainer.append(buttonElem);
 });
 
-// Function to create a button for a sound
+// buttonfunction
 function createGuitar(audioSrc) {
   const buttonElem = document.createElement("button");
   buttonElem.textContent = audioSrc.fileName;
@@ -47,7 +51,7 @@ function createGuitar(audioSrc) {
   audioSrc.buttonElem = buttonElem;
   audioSrc.soundElem = soundElem;
 
-  // Use mousedown and mouseup events for better compatibility
+  // mousepress
   buttonElem.addEventListener("mousedown", () => {
     soundElem.play();
   });
@@ -60,7 +64,7 @@ function createGuitar(audioSrc) {
   return buttonElem;
 }
 
-// Listen for keyboard events
+// hotkeys
 window.addEventListener("keydown", (event) => {
   const keyPressed = event.key.toLowerCase();
 
