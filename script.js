@@ -65,11 +65,13 @@ function createGuitar(audioSrc, labelText) {
   // mousepress
   buttonElem.addEventListener("mousedown", () => {
     soundElem.play();
+    buttonElem.classList.add("btn-active");
   });
 
   buttonElem.addEventListener("mouseup", () => {
     soundElem.pause();
     soundElem.currentTime = 0;
+    buttonElem.classList.remove("btn-active")
   });
 
   return buttonElem;
@@ -82,7 +84,7 @@ window.addEventListener("keydown", (event) => {
   const soundIsFound = sounds.find((sound) => sound.hotKey === keyPressed);
   if (!soundIsFound) return;
 
-  soundIsFound.buttonElem.classList.add("btn-down");
+  soundIsFound.buttonElem.classList.add("btn-active");
   soundIsFound.soundElem.play();
 });
 
@@ -92,7 +94,7 @@ window.addEventListener("keyup", (event) => {
   const soundIsFound = sounds.find((sound) => sound.hotKey === keyPressed);
   if (!soundIsFound) return;
 
-  soundIsFound.buttonElem.classList.remove("btn-down");
+  soundIsFound.buttonElem.classList.remove("btn-active");
   soundIsFound.soundElem.pause();
   soundIsFound.soundElem.currentTime = 0;
 });
