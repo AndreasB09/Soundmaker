@@ -56,6 +56,12 @@ function createGuitar(audioSrc, labelText) {
   audioSrc.buttonElem = buttonElem;
   audioSrc.soundElem = soundElem;
 
+  const hotkeyElem = document.createElement("div");
+  const hotkeyText = `'${audioSrc.hotKey.toUpperCase()}'`;
+  hotkeyElem.textContent = hotkeyText;
+
+  // Append hotkey to the button
+  buttonElem.appendChild(hotkeyElem);
   // mousepress
   buttonElem.addEventListener("mousedown", () => {
     soundElem.play();
