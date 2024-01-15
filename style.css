@@ -33,3 +33,23 @@ button {
     background-color: #023047;
     border: 0.1rem solid #fff;
 }
+
+@media (max-width: 620px) {
+    #btn-container {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 420px) {
+    button {
+        width: 10rem;
+    }
+}
+
+@media (max-width: 360px) {
+    #btn-container {
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
