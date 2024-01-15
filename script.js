@@ -1,5 +1,4 @@
 // array with sound files and shortcuts
-
 const soundFolder = "sounds";
 const sounds = [
   {
@@ -39,7 +38,7 @@ function numberToWords(number) {
   return words[number - 1];
 }
 
-// Create and append buttons for each sound
+// create buttons for each sound
 sounds.forEach((audioSrc, index) => {
   const buttonElem = createGuitar(audioSrc, `Sound ${numberToWords(index + 1)}`);
   btnContainer.append(buttonElem);
@@ -60,8 +59,7 @@ function createGuitar(audioSrc, labelText) {
   const hotkeyText = `'${audioSrc.hotKey.toUpperCase()}'`;
   hotkeyElem.textContent = hotkeyText;
 
-  // Append hotkey to the button
-  buttonElem.appendChild(hotkeyElem);
+  buttonElem.append(hotkeyElem);
   // mousepress
   buttonElem.addEventListener("mousedown", () => {
     soundElem.play();
